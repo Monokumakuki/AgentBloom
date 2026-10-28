@@ -1,0 +1,10 @@
+build/
+dist/
+data/
+qa/
+tests/
+node_modules/
+*.user
+*.log
+.env*
+__pycache__/

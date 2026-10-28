@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://agentbloom.assets https://agentbloom.thumbs blob: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'none'; object-src 'none'"><title>拾影花笺 · 收集箱</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<svg class="symbols" aria-hidden="true"><defs>
+ <symbol id="i-add" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+ <symbol id="i-shot" viewBox="0 0 24 24"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m8 0h4v-4M9 9h6v6H9z"/></symbol>
+ <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Zm0 0v14"/></symbol>
+ <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+ <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9z"/></symbol>
+ <symbol id="i-import" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/></symbol>
+ <symbol id="i-pin" viewBox="0 0 24 24"><path d="m9 3 9 3-3 5 1 4-5-1-4 4m3-10-4 4 4 1M7 18l-4 3"/></symbol>
+ <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+ <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="3"/><path d="M15 8V3H3v13h5"/></symbol>
+ <symbol id="i-edit" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l1-6L16 3l5 5-11 11z"/></symbol>
+ <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11Z"/></symbol>
+ <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+</defs></svg>
+<aside class="sidebar">
+ <a class="brand" href="#" aria-label="AgentBloom 首页"><span class="brand-mark"><img src="assets/agentbloom-icon.svg" alt="AgentBloom 小花截图图标"></span><span>拾影花笺<small>让小灵感，有个家。</small></span></a>
+ <button class="space active" id="all-space"><svg><use href="#i-book"/></svg>全部截图<span class="tiny-bloom">✧</span></button>
+ <div class="nav-label"><span>我的分类</span><button id="new-side" class="icon-button" aria-label="新建分类"><svg><use href="#i-add"/></svg></button></div>
+ <nav id="projects" aria-label="项目"></nav>
+ <button class="new-project" id="new-dashed"><span>＋</span>给小收藏分个类</button>
+ <div class="sidebar-bottom">
+  <div class="companion-label"><span>今天也一起收集</span><span class="online-dot"></span></div>
+  <div class="companions" id="companions"></div>
+  <button class="settings-row" id="appearance"><svg><use href="#i-star"/></svg><span>花笺衣橱</span><span aria-hidden="true" style="margin-left:auto">✿</span></button>
+  <button class="settings-row" id="hotkey-settings"><svg><use href="#i-shot"/></svg><span>截图快捷键</span><kbd id="hotkey-label" style="margin-left:auto">·</kbd></button>
+  <button class="settings-row" id="quiet"><svg><use href="#i-moon"/></svg><span>安静模式</span><span class="switch" aria-hidden="true"></span></button>
+  <label class="key-setting"><span>全局快捷键</span><input id="keys" type="checkbox" checked aria-label="启用全局快捷键"></label>
+  <label class="key-setting"><span>开机自动陪伴</span><input id="startup" type="checkbox" aria-label="开机自动启动 AgentBloom"></label>
+  <div class="local-note"><span></span>图片和备注，只保存在这台电脑</div>
+ </div>
+</aside>
+<main>
+ <header class="topbar" id="drag-zone"><div class="breadcrumb">拾影花笺<span>/</span><strong>我的收藏集</strong></div><div class="header-actions"><span id="preview-label" hidden>浏览器外观预览</span><button id="restore-history" class="text-button" hidden>恢复清理</button><button id="clear-history" class="text-button" title="清理历史并保留可恢复副本">一键清理</button><button id="export" class="text-button"><svg><use href="#i-import"/></svg>导出收藏</button><button id="window-minimize" class="icon-button" aria-label="收起收藏集" title="收起收藏集">−</button><button id="window-hide" class="icon-button" aria-label="收起收集箱" title="收起到左侧书签"><svg><use href="#i-close"/></svg></button></div></header>
+ <div class="workspace">
+  <section class="project-intro"><div><div class="project-date">把片刻夹进书里，把灵感留在身边</div><h1 id="project-name">收集箱<span class="title-flower">✿</span></h1><p>截图会一直留在这里。桌面的挂图收起了，小收藏也不会丢。</p></div><div class="intro-actions"><button class="button secondary" id="import"><svg><use href="#i-import"/></svg>收进图片</button><button class="button primary" id="capture"><svg><use href="#i-shot"/></svg>截一张<kbd>·</kbd></button></div></section>
+  <section class="rope-stage" aria-label="当前项目的悬挂预览">
+   <div class="stage-wash"></div>
+   <svg class="branch" viewBox="0 0 1000 220" preserveAspectRatio="none" aria-hidden="true"><path class="vine" d="M80 80C260 48 290 130 470 85S760 120 1005 66"/><path class="vine-faint" d="M80 84C260 52 290 134 470 89S760 124 1005 70"/><g class="leaves"><path d="M215 76q-20-30-30-13 4 22 30 13m360 3q10-26 28-23 0 21-28 23m238 13q16 28 30 10-6-20-30-10"/></g><g class="branch-flowers"><text x="306" y="103">✿</text><text x="682" y="98">✿</text><text x="925" y="88">✧</text></g></svg>
+   <div class="reel agent-orbit" id="reel" role="group" aria-label="Agent 装饰转轮，滚轮转动，点击角色切换挂饰"><div class="orbit-track" id="orbit-track"></div></div>
+   <svg class="star-chain" viewBox="0 0 1000 220" preserveAspectRatio="none" aria-hidden="true"><path d="M80 80C260 48 290 130 470 85S760 120 1005 66"/><g><circle cx="196" cy="78" r="5"/><circle cx="575" cy="80" r="6"/><circle cx="856" cy="89" r="4"/></g><g class="star-points"><path d="m306 82 3 7 7 3-7 3-3 7-3-7-7-3 7-3zm377-4 3 7 7 3-7 3-3 7-3-7-7-3 7-3zm250-9 2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></g></svg>
+   <div class="reel-name" id="reel-name">滚一滚，换个小伙伴</div>
+   <div class="hanging-shots" id="hanging"></div>
+   <div class="stage-empty" id="stage-empty"><div class="empty-friends" id="empty-friends"></div><div>小伙伴已经就位，等你的第一张截图。<small>按 <kbd>·</kbd> 框选，把它挂在这里</small></div></div>
+   <div class="stage-caption"><span class="caption-dot"></span><span id="theme-description">星屑花园</span><span class="stage-caption-end">鼠标靠近屏幕上缘，挂图和小伙伴就会探出头</span></div>
+  </section>
+  <section class="collection-head"><div class="collection-title"><h2>收藏的片刻</h2><span id="shot-count">0 张</span></div><div class="collection-tools"><div class="filters" role="group" aria-label="筛选图片"><button class="selected" data-filter="all">全部</button><button data-filter="favorite">收藏</button><button data-filter="hung">已挂上</button></div><label class="search"><svg><use href="#i-search"/></svg><input id="search" placeholder="找图片，也找备注" aria-label="搜索图片与备注"><kbd>/</kbd></label></div></section>
+  <div class="gallery" id="gallery"></div>
+  <section class="empty-state" id="empty"><div class="empty-illustration"><span>✧</span><svg><use href="#i-shot"/></svg><i>✿</i></div><h2>给这个项目，留下一张小发现</h2><p>代码片段、好看的设计、想记住的一句话，都可以。</p><button class="button secondary" id="empty-capture">截下第一张<svg><use href="#i-arrow"/></svg></button></section>
+  <footer class="workspace-footer"><span id="footer-text">慢慢收集，灵感不必匆忙。</span><span>AgentBloom <i>✿</i></span></footer>
+ </div>
+</main>
+<dialog id="project-dialog" class="project-dialog"><form id="project-form"><button type="button" class="dialog-close icon-button" data-close="project-dialog" aria-label="关闭"><svg><use href="#i-close"/></svg></button><span class="modal-flower">✿</span><h2>给小收藏分个类</h2><p>所有截图都留在收集箱，分类帮你更快找到它们。</p><label for="project-input">分类名称</label><input id="project-input" maxlength="60" placeholder="例如：毕业设计、界面灵感…" required autocomplete="off"><button class="button primary" type="submit">创建分类<svg><use href="#i-add"/></svg></button></form></dialog>
+<dialog id="detail" class="detail-dialog"><div class="detail-layout"><div class="detail-image"><img id="detail-image" alt="截图原图预览"></div><aside class="detail-info"><button class="dialog-close icon-button" data-close="detail" aria-label="关闭预览"><svg><use href="#i-close"/></svg></button><div class="detail-agent"><img id="detail-agent" alt="角色"><span id="detail-agent-name"></span><small>替你把这张收好了</small></div><h2 id="detail-name"></h2><div id="detail-meta"></div><div class="detail-actions"><button data-shot-action="copy" title="复制图片"><svg><use href="#i-copy"/></svg>复制</button><button data-shot-action="pin" title="置顶到桌面"><svg><use href="#i-pin"/></svg>贴图</button><button data-shot-action="edit" title="打开原生编辑器"><svg><use href="#i-edit"/></svg>编辑</button><button data-shot-action="favorite" id="detail-favorite"><svg><use href="#i-star"/></svg>收藏</button></div><label class="agent-picker-label">让谁来帮你挂住它？</label><div id="agent-picker" class="agent-picker" role="radiogroup" aria-label="选择固定头像"></div><label for="category">归类到</label><select id="category" aria-label="截图分类"></select><label for="note">留点想法</label><textarea id="note" maxlength="10000" placeholder="这张图，为什么值得留下？"></textarea><button id="save-note" class="button primary">保存备注</button><div class="detail-secondary"><button data-shot-action="hang">挂到桌面上缘</button><button data-shot-action="save">保存副本</button><button data-shot-action="remove">从挂饰取下</button><button data-shot-action="open">打开原图</button></div></aside></div></dialog>
+<button id="page-tab" class="page-tab" aria-label="收起到书签">收起收集</button><dialog id="clear-dialog" class="project-dialog clear-dialog"><form id="clear-form"><span class="modal-flower">✿</span><h2>帮小收藏轻轻打扫一下？</h2><p>未收藏的截图先收进可恢复的小抽屉。<br>点亮星星的小收藏，会乖乖留在这里。</p><label class="clear-choice"><input id="clear-skip" type="checkbox">以后交给你啦，不用再问我</label><div class="clear-buttons"><button type="button" class="button secondary" data-close="clear-dialog">先不打扫</button><button id="clear-confirm" type="submit" class="button primary">好，轻轻收好</button></div></form></dialog><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<dialog id="shortcut-dialog" class="project-dialog"><form id="shortcut-form"><span class="modal-flower">✿</span><h2>给截图选个顺手的按键</h2><p>点进下面，按下想用的按键或组合键。<br>例如 F8、Ctrl + Alt + A；收集箱仍用 Shift + ·。</p><input id="shortcut-input" type="text" readonly aria-label="录入截图快捷键" placeholder="按下新的快捷键" style="text-align:center;font-size:20px;padding:16px;width:100%;border:1px solid #dbd1ee;border-radius:12px;background:#faf8ff;color:#8066b5"><div class="clear-buttons" style="margin-top:18px"><button id="shortcut-default" type="button" class="button secondary">恢复 ·</button><button type="button" class="button secondary" data-close="shortcut-dialog">先不改</button><button id="shortcut-save" class="button primary" type="submit" disabled>保存快捷键</button></div></form></dialog>
+<script src="app.js"></script>
+</body></html>
